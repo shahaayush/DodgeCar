@@ -5,7 +5,6 @@ def distance(point_1=(0, 0), point_2=(0, 0)):
     """Returns the distance between two points"""
     return math.sqrt((point_1[0]-point_2[0])**2+(point_1[1]-point_2[1])**2)
 
-
 class PhysicalObject(pyglet.sprite.Sprite):
     """A sprite with physical properties such as velocity"""
     
@@ -15,6 +14,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
         # In addition to position, we have velocity
         self.velocity_x, self.velocity_y = 0.0, 0.0
         self.dead = False
+        self.new_objects=[]
 
     def update(self, dt):
         """This method should be called every frame."""
@@ -25,10 +25,14 @@ class PhysicalObject(pyglet.sprite.Sprite):
     
     def check_bounds(self):
         """Use the classic Asteroids screen wrapping behavior"""
-        min_x = 0       #-self.image.width/2
-        min_y = 0       #-self.image.height/2
-        max_x = 800     #+ self.image.width/2
-        max_y = 600     # + self.image.height/2
+        min_x = -self.image.width/2
+        min_y = -self.image.height/2
+        max_x = 800 + self.image.width/2
+        max_y = 600 + self.image.height/2
+        # min_x = 0       #-self.image.width/2
+        # min_y = 0       #-self.image.height/2
+        # max_x = 800     #+ self.image.width/2
+        # max_y = 600     # + self.image.height/2
         if self.x < min_x:
             self.x = max_x
         elif self.x > max_x:

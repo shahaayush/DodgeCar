@@ -18,5 +18,5 @@ road_image = pyglet.resource.image("road.jpeg")
 center_image(road_image)
 
 
-asteroid_image = pyglet.resource.image("enemy.png")
-center_image(asteroid_image)
+enemy_image = pyglet.resource.image("enemy.png")
+center_image(enemy_image)
