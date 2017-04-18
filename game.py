@@ -45,18 +45,19 @@ def on_draw():
 
 def update(dt):
     
-    global blocks
+    global blocks, game_objects, car_ship
 
     if len(blocks) < 3:
-        for obj in game_objects:
-            try:    
-                blocks.extend(load.gen_enemies(3-len(blocks), blocks[-1].y, batch=main_batch))
-            except IndexError:
-                blocks = load.gen_enemies(3, 200, batch=main_batch)
-            
-            obj.new_objects.append(blocks)
+        try:    
+            blocks.extend(load.gen_enemies(3-len(blocks), blocks[-1].y, batch=main_batch))
+        except IndexError:
+            blocks = load.gen_enemies(3, 200, batch=main_batch)
 
 
+    for obj in blocks:
+        obj.update(dt)
+
+    car_ship.update(dt)
 
     # To avoid handling collisions twice, we employ nested loops of ranges.
     # This method also avoids the problem of colliding an object with itself.
@@ -72,30 +73,14 @@ def update(dt):
                 if obj_1.collides_with(obj_2):
                     obj_1.handle_collision_with(obj_2)
                     obj_2.handle_collision_with(obj_1)
-    
-    
-    
-    to_add=[]
 
-    for obj in game_objects:
-        obj.update(dt)
-        to_add.extend(obj.new_objects)
-        obj.new_objects=[]
-    
-    
+
     # Get rid of dead objects
-    for to_remove in [obj for obj in game_objects if obj.dead]:
-        
-        to_add.extend(obj.new_objects)
+    for to_remove in [obj for obj in blocks if obj.dead]:
+        # Remove the object from our list
+        blocks.remove(to_remove)
         # Remove the object from any batches it is a member of
         to_remove.delete()
-        
-        # Remove the object from our list
-        game_objects.remove(to_remove)
-    
-    game_objects.extend(to_add)
-   
-    
 
 # Not reqd to write as it is done above only!!!
     # removal=[]
