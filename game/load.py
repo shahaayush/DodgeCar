@@ -15,8 +15,6 @@ def cars(batch=None):
 def gen_enemies(num_icons, start_y=120, batch=None):
     blocks = []
     for i in range(num_icons):
-        # x = start_x + random.randint(40, 150) * (i + 1) + 100 * (i + 1)
-        # while y>120 and y<550
         try:
             y = blocks[-1].y + random.randint(90, 150)
         except IndexError:

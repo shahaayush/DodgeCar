@@ -12,6 +12,10 @@ score_label = pyglet.text.Label(text="Score: 0", x=10, y=575, batch=main_batch)
 # max_fitness_label = pyglet.text.Label(text="Max Fitness: 0", x=20, y=340)
 # avg_fitness = pyglet.text.Label(text="Avg Fitness: 0", x=20, y=340)
 # alive_label = pyglet.text.Label(text="Alive gamers: 0", x=20, y=360)
+game_over_label = pyglet.text.Label(text="GAME OVER",
+                                    x=250, y=-300, anchor_x='center', 
+                                    batch=main_batch, font_size=48)
+
 
 bg = pyglet.sprite.Sprite(resources.road_image)
 bg.scale=0.7
@@ -50,14 +54,16 @@ def update(dt):
     if len(blocks) < 3:
         try:    
             blocks.extend(load.gen_enemies(3-len(blocks), blocks[-1].y, batch=main_batch))
+            print("in try")
         except IndexError:
             blocks = load.gen_enemies(3, 200, batch=main_batch)
-
+            print("in except")
 
     for obj in blocks:
         obj.update(dt)
-
-    car_ship.update(dt)
+    
+    if not car_ship.dead:
+        car_ship.update(dt)
 
     # To avoid handling collisions twice, we employ nested loops of ranges.
     # This method also avoids the problem of colliding an object with itself.
@@ -81,17 +87,19 @@ def update(dt):
         blocks.remove(to_remove)
         # Remove the object from any batches it is a member of
         to_remove.delete()
+    
+    player_dead= False
 
-# Not reqd to write as it is done above only!!!
-    # removal=[]
-    # for block in blocks:
-    #     if block.dead:
-    #         block.delete()
-    # for block in removal:
-    #     blocks.remove(block)
-    #     block.delete()
+    for i in [obj for obj in game_objects if obj.dead]:
+        if i== car_ship:
+            print("car dead")
+            player_dead= True
+            game_objects.remove(i)
+            i.delete()
+            
     
-    
+    if player_dead:
+        game_over_label.y = 300
 
     print("length at update of block is "+str(len(blocks)))
     global score

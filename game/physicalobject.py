@@ -14,7 +14,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
         # In addition to position, we have velocity
         self.velocity_x, self.velocity_y = 0.0, 0.0
         self.dead = False
-        self.new_objects=[]
+        # self.new_objects=[]
 
     def update(self, dt):
         """This method should be called every frame."""
