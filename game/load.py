@@ -16,7 +16,7 @@ def gen_enemies(num_icons, start_y=120, batch=None):
     blocks = []
     for i in range(num_icons):
         try:
-            y = blocks[-1].y + random.randint(90, 150)
+            y = blocks[-1].y + 100 + random.randint(90, 150)
         except IndexError:
             y = start_y + random.randint(100, 350)
         xl = random.sample(set([200,300]), 1)
