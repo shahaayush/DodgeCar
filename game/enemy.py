@@ -9,6 +9,7 @@ class Enemy(physicalobject.PhysicalObject):
 
     def check_bounds(self):
         if self.y < -20:
+            print("SOMEONE DIED")
             self.dead = True
         # else:
         #     self.dead= False  

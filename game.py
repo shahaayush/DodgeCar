@@ -54,54 +54,30 @@ def update(dt):
     if len(blocks) < 3:
         try:    
             blocks.extend(load.gen_enemies(3-len(blocks), blocks[-1].y, batch=main_batch))
-            print("in try")
         except IndexError:
             blocks = load.gen_enemies(3, 200, batch=main_batch)
-            print("in except")
 
+    removal = []
     for obj in blocks:
         obj.update(dt)
-    
+        if obj.dead:
+            removal.append(obj)
+
+    # Get rid of dead objects
+    for block in removal:
+        blocks.remove(block)
+        block.delete()
+
     if not car_ship.dead:
         car_ship.update(dt)
 
-    # To avoid handling collisions twice, we employ nested loops of ranges.
-    # This method also avoids the problem of colliding an object with itself.
-    for i in xrange(len(game_objects)):
-        for j in xrange(i+1, len(game_objects)):
-            
-            obj_1 = game_objects[i]
-            obj_2 = game_objects[j]
-            
-            # Make sure the objects haven't already been killed
-            if not obj_1.dead and not obj_2.dead:
-            # if not obj_1.remove and not obj_2.remove:  
-                if obj_1.collides_with(obj_2):
-                    obj_1.handle_collision_with(obj_2)
-                    obj_2.handle_collision_with(obj_1)
+    for block in blocks:
+        if block.collides_with(car_ship):
+            car_ship.dead = True
 
-
-    # Get rid of dead objects
-    for to_remove in [obj for obj in blocks if obj.dead]:
-        # Remove the object from our list
-        blocks.remove(to_remove)
-        # Remove the object from any batches it is a member of
-        to_remove.delete()
-    
-    player_dead= False
-
-    for i in [obj for obj in game_objects if obj.dead]:
-        if i== car_ship:
-            print("car dead")
-            player_dead= True
-            game_objects.remove(i)
-            i.delete()
-            
-    
-    if player_dead:
+    if car_ship.dead:
         game_over_label.y = 300
 
-    print("length at update of block is "+str(len(blocks)))
     global score
     score += 10 * dt
     score_label.text = "Score: {}".format(int(score))
