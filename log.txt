@@ -1,0 +1,60 @@
+Fitness: 63.606, Genes: 3, Neurons: 4
+Species len: 2
+Fitness: 60.465, Genes: 3, Neurons: 4
+Species len: 2
+Fitness: 50.471, Genes: 3, Neurons: 4
+Species len: 3
+Fitness: 70.031, Genes: 3, Neurons: 4
+Species len: 3
+Fitness: 66.894, Genes: 3, Neurons: 4
+Species len: 3
+Fitness: 60.205, Genes: 3, Neurons: 4
+Species len: 3
+Fitness: 70.078, Genes: 3, Neurons: 4
+Species len: 8
+Fitness: 70.326, Genes: 3, Neurons: 4
+Species len: 5
+Fitness: 54.639, Genes: 3, Neurons: 4
+Species len: 9
+Fitness: 34.996, Genes: 3, Neurons: 4
+Species len: 9
+Fitness: 35.312, Genes: 5, Neurons: 5
+Species len: 11
+Fitness: 32.298, Genes: 5, Neurons: 5
+Species len: 13
+Fitness: 32.939, Genes: 7, Neurons: 6
+Species len: 19
+Fitness: 34.209, Genes: 7, Neurons: 6
+Species len: 18
+Fitness: 32.221, Genes: 9, Neurons: 7
+Species len: 17
+Fitness: 34.949, Genes: 11, Neurons: 8
+Species len: 21
+Fitness: 61.955, Genes: 9, Neurons: 7
+Species len: 24
+Fitness: 49.799, Genes: 9, Neurons: 7
+Species len: 23
+Fitness: 32.965, Genes: 13, Neurons: 8
+Species len: 25
+Fitness: 58.726, Genes: 10, Neurons: 7
+Species len: 27
+Fitness: 35.900, Genes: 11, Neurons: 7
+Species len: 26
+Fitness: 41.421, Genes: 10, Neurons: 7
+Species len: 30
+Fitness: 67.618, Genes: 13, Neurons: 8
+Species len: 31
+Fitness: 100.549, Genes: 10, Neurons: 7
+Species len: 34
+Fitness: 87.399, Genes: 10, Neurons: 7
+Species len: 33
+Fitness: 35.284, Genes: 10, Neurons: 7
+Species len: 34
+Fitness: 35.005, Genes: 20, Neurons: 11
+Species len: 33
+Fitness: 54.317, Genes: 20, Neurons: 10
+Species len: 1
+Fitness: 59.284, Genes: 16, Neurons: 9
+Species len: 1
+Fitness: 52.693, Genes: 14, Neurons: 8
+Species len: 33

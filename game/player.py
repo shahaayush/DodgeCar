@@ -8,6 +8,7 @@ class Player(physicalobject.PhysicalObject):
     def __init__(self, *args, **kwargs):
         super(Player, self).__init__(img=resources.car_image, *args, **kwargs)
         
+        self.genome = None
         self.keys = dict(left=False, right=False)
     
     def on_key_press(self, symbol, modifiers):    

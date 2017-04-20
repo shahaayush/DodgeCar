@@ -31,6 +31,7 @@ gamers = []
 blocks = []
 
 def fitness(pop):
+    print 'LOOLOLOLOLO'
     global score
     for genome, gamer in zip(pop, gamers):
         genome['fitness'] = gamer.genome['fitness']
@@ -72,7 +73,6 @@ def restart():
     gamers = []
     for genome in pop:
         gamer = player.Player(x=200, y=60, batch=main_batch)
-       
         # gamer.y += float(gamer.scale * PLAYER_SIZE / 2)
         gamer.genome = genome
         gamer.activate = neat.generate_network(genome)
@@ -115,11 +115,10 @@ def on_draw():
     main_batch.draw()
 
 def update(dt):
-    
+    dt = 20*dt
     global blocks, game_objects, car_ship, score
 
     alive_label.text = "Alive gamers: {}".format(len([x for x in gamers if not x.dead]))
-
 
     if len(blocks) < 3:
         try:    
@@ -127,36 +126,36 @@ def update(dt):
         except IndexError:
             blocks = load.gen_enemies(3, 200, batch=main_batch)
 
-
-
-
-   ####################NOT SURE############################# 
-    blocks_ahead = filter(lambda b: b.position > 100, blocks)
-    sorted_blocks = sorted(blocks_ahead, key=lambda b: b.position)
+    blocks_ahead = filter(lambda b: b.y > 150, blocks)
+    sorted_blocks = sorted(blocks_ahead, key=lambda b: b.y)
     try:
-        closest_block = sorted_blocks[0].position
+        closest_block_x = (sorted_blocks[0].x - 200)/100
+        closest_block_y = sorted_blocks[0].y
     except:
-        closest_block = 0
-    try:
-        second_closest_block = sorted_blocks[1].position
-    except:
-        second_closest_block = 0
-    try:
-        third_closest_block = sorted_blocks[2].position
-    except:
-        third_closest_block = 0
+        closest_block_x = 0
+        closest_block_y = 0
+    # try:
+    #     second_closest_block = sorted_blocks[1].position
+    # except:
+    #     second_closest_block = 0
+    # try:
+    #     third_closest_block = sorted_blocks[2].position
+    # except:
+    #     third_closest_block = 0
     nn_in = [0, 0, 0, 0]
     nn_in = [0, 0]
-    nn_in = closest_block, 1
+    nn_in = closest_block_x, closest_block_y
 
+    r_count = 0
     for gamer in gamers:
         if not gamer.dead:
-            # if gamer.activate(nn_in)[0] > 0.5:
-                # if gamer.y == defaults.GROUND_HT:
-                #     gamer.jump = True
+            if gamer.activate(nn_in)[0] > 0.5:
+                r_count += 1
+                gamer.x = 300
+            else:
+                gamer.x = 200
             gamer.update(dt)
-
-#############################NOT SURE ################################
+    # print r_count, " gamers went right"
 
     removal = []
     for block in blocks:
@@ -170,11 +169,10 @@ def update(dt):
 
         if block.dead:
             removal.append(block)
-    
+
     for block in removal:
         blocks.remove(block)
         block.delete()
-
 
     if len([g for g in gamers if not g.dead]) == 0:
     # if no gamers are alive, start next generation
@@ -182,7 +180,7 @@ def update(dt):
         print("Dead. Restarting..")
         init()
         return
-    
+
     score += 10 * dt
     score_label.text = "Score: {}".format(int(score))
 

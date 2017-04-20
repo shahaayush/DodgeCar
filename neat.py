@@ -1,3 +1,4 @@
+from __future__ import print_function
 import pickle
 import math
 import time
@@ -569,15 +570,16 @@ def print_fittest(species, verbose=False, compact=False, file=sys.stdout):
     if verbose:
         print("Fitness: {:.03f}, Genes: {}, Neurons: {}".format(fit['fitness'], len(fit['genes']), len(fit['neurons'])))
         print("Species len: {}".format(len(species)))
-    # print("Fitness: {:.03f}, Genes: {}, Neurons: {}".format(fit['fitness'], len(fit['genes']), len(fit['neurons'])), file=file)
-    # print("Species len: {}".format(len(species)), file=file)
+    temp = "Fitness: {:.3f}, Genes: {}, Neurons: {}".format(fit['fitness'], len(fit['genes']), len(fit['neurons']))
+    print(temp, file=file)
+    print("Species len: {}".format(len(species)), file=file)
 
 
-#    if not compact:
-#        nw = generate_network(fit)
-#        for xi, xo in zip(xor_inputs, xor_outputs):
-#            output = nw(xi)
-#            print("input {!r}, expected output {!r}, got {!r}".format(xi, xo, output), file=file)
+   # if not compact:
+   #     nw = generate_network(fit)
+   #     for xi, xo in zip(xor_inputs, xor_outputs):
+   #         output = nw(xi)
+   #         print("input {!r}, expected output {!r}, got {!r}".format(xi, xo, output), file=file)
     return fit
 
 

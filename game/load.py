@@ -16,9 +16,9 @@ def gen_enemies(num_icons, start_y=120, batch=None):
     blocks = []
     for i in range(num_icons):
         try:
-            y = blocks[-1].y + 100 + random.randint(90, 300)
+            y = blocks[-1].y + 200 + random.randint(170, 300)
         except IndexError:
-            y = start_y + random.randint(100, 350)
+            y = start_y + random.randint(200, 350)
         xl = random.sample(set([200,300]), 1)
         new_sprite = enemy.Enemy(x=xl[0], y=y, batch=batch)
         # new_sprite.scale = 0.2
