@@ -8,7 +8,7 @@ main_batch = pyglet.graphics.Batch()
 
 # Set up the two top labels
 score_label = pyglet.text.Label(text="Score: 0", x=10, y=575, batch=main_batch)
-# generation_label = pyglet.text.Label(text="Generation: 0", x=20, y=320)
+# generation_label = pyglet.text.Label(text="Generation: 0", x=10, y=555, batch=main_batch)
 # max_fitness_label = pyglet.text.Label(text="Max Fitness: 0", x=20, y=340)
 # avg_fitness = pyglet.text.Label(text="Avg Fitness: 0", x=20, y=340)
 # alive_label = pyglet.text.Label(text="Alive gamers: 0", x=20, y=360)
